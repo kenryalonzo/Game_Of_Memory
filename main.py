@@ -12,15 +12,15 @@ def generer_sequence(longueur):
 # Fonction pour demander à l'utilisateur de mémoriser la séquence
 def demander_sequence(sequence):
     print("Mémorisez la séquence suivante :")
-    print(sequence)
+    print("".join(map(str, sequence)))
     time.sleep(3)  # Attendre 3 secondes pour permettre à l'utilisateur de mémoriser la séquence
     # Effacer la console pour masquer la séquence
     print("\033c")
 
 # Fonction pour permettre à l'utilisateur de deviner la séquence
 def deviner_sequence(sequence):
-    print("Entrez la séquence que vous avez mémorisée (séparée par des espaces) :")
-    reponse = input().split()
+    print("Entrez la séquence que vous avez mémorisée (sans espaces) :")
+    reponse = input()
     reponse = [int(chiffre) for chiffre in reponse]
     if reponse == sequence:
         return True
@@ -43,7 +43,7 @@ def jouer_jeu():
         else:
             print("Dommage. Vous vous êtes trompé.")
             print("Votre score final est de", score)
-            print("La dernière séquence était :", sequence)
+            print("La dernière séquence était :", "".join(map(str, sequence)))
             break
 
 # Lancer le jeu
