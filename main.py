@@ -32,16 +32,18 @@ def jouer_jeu():
     sequence_base = generer_sequence(4)
     sequence = sequence_base.copy()
     longueur = 4
+    score = 0
     while True:
         demander_sequence(sequence)
         if deviner_sequence(sequence):
             chiffre = random.randint(0, 9)
             sequence.append(chiffre)
             longueur += 1
+            score += 1
         else:
             print("Dommage. Vous vous êtes trompé.")
-            print("Votre score final est de", longueur-1)
-            print("La séquence était :", sequence_base)
+            print("Votre score final est de", score)
+            print("La dernière séquence était :", sequence)
             break
 
 # Lancer le jeu
