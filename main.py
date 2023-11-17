@@ -10,14 +10,12 @@ def generer_sequence(longueur):
     return sequence
 
 # Fonction pour demander à l'utilisateur de mémoriser la séquence
-def demander_sequence(longueur):
+def demander_sequence(sequence):
     print("Mémorisez la séquence suivante :")
-    sequence = generer_sequence(longueur)
     print(sequence)
     time.sleep(3)  # Attendre 3 secondes pour permettre à l'utilisateur de mémoriser la séquence
     # Effacer la console pour masquer la séquence
     print("\033c")
-    return sequence
 
 # Fonction pour permettre à l'utilisateur de deviner la séquence
 def deviner_sequence(sequence):
@@ -31,15 +29,19 @@ def deviner_sequence(sequence):
 
 # Boucle principale du jeu
 def jouer_jeu():
-    longueur = 4  # Commencer avec une séquence de 4 chiffres
+    sequence_base = generer_sequence(4)
+    sequence = sequence_base.copy()
+    longueur = 4
     while True:
-        sequence = demander_sequence(longueur)
+        demander_sequence(sequence)
         if deviner_sequence(sequence):
-            print("Bravo ! Vous avez correctement mémorisé la séquence.")
+            chiffre = random.randint(0, 9)
+            sequence.append(chiffre)
             longueur += 1
         else:
             print("Dommage. Vous vous êtes trompé.")
             print("Votre score final est de", longueur-1)
+            print("La séquence était :", sequence_base)
             break
 
 # Lancer le jeu
